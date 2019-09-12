@@ -51,7 +51,8 @@ def status():
         db.session.add(new_advertisement)
         db.session.commit()
         advertisements = Advertisement.query.all()
-
+        app.logger.info(f"Grabbing all Advertisements")
+        
         # adding a half sleep to test something
         time.sleep(2.5)
         return jsonify([b.serialize() for b in advertisements])
