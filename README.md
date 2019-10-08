@@ -1,7 +1,7 @@
 
 # Example Instrumented Ecommerce App
 
-This is a WIP repo demonstrating observability in an eCommerce app.
+This is a repo demonstrating observability in an eCommerce app.
 
 It will be used as the basis for my next workshop for the Datadog Community Summit in Berlin.
 
