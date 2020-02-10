@@ -1,13 +1,14 @@
 version: '3'
 services:
   agent:
-    image: "datadog/agent:6.13.0"
+    image: "datadog/agent:7.17.0"
     environment:
       - DD_API_KEY
       - DD_APM_ENABLED=true
       - DD_LOGS_ENABLED=true
       - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
       - DD_PROCESS_AGENT_ENABLED=true
+      - DD_DOCKER_LABELS_AS_TAGS={"my.custom.label.team":"team"}
       - DD_TAGS='env:ruby-shop'
     ports:
       - "8126:8126"
@@ -38,6 +39,7 @@ services:
       - db
     labels:
       com.datadoghq.ad.logs: '[{"source": "python", "service": "discountsservice"}]'
+      my.custom.label.team: "discount"
   frontend:
     environment:
       - DATADOG_TRACE_AGENT_HOSTNAME=agent
@@ -58,6 +60,7 @@ services:
       - ./store-frontend:/spree/sandbox
     labels:
       com.datadoghq.ad.logs: '[{"source": "ruby", "service": "frontend"}]'
+      my.custom.label.team: "discount"
   advertisements:
     environment:
       - FLASK_APP=ads.py
@@ -79,6 +82,7 @@ services:
       - db
     labels:
       com.datadoghq.ad.logs: '[{"source": "python", "service": "adsservice"}]'
+      my.custom.label.team: "advertisements"
   db:
     image: postgres:11-alpine
     restart: always
