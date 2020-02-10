@@ -60,7 +60,7 @@ services:
       - ./store-frontend:/spree/sandbox
     labels:
       com.datadoghq.ad.logs: '[{"source": "ruby", "service": "frontend"}]'
-      my.custom.label.team: "discount"
+      my.custom.label.team: "frontend"
   advertisements:
     environment:
       - FLASK_APP=ads.py
